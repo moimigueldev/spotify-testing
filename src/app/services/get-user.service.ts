@@ -16,8 +16,14 @@ export class GetUserService {
 
   // https://us-central1-angular-532f5.cloudfunctions.net/app
 
+  // getUserData() {
+  //   console.log('hello from the service')
+  //   return this.http.get('https://us-central1-angular-532f5.cloudfunctions.net/app/auth/logout', {responseType: 'text'}).subscribe(data => {
+  //     console.log('data', data)
+  //   }) 
+  // }
   getUserData() {
-    console.log('hello from the service')
+    console.log('Calling the service')
     return this.http.get('https://us-central1-angular-532f5.cloudfunctions.net/app/auth/logout', {responseType: 'text'}).subscribe(data => {
       console.log('data', data)
     }) 
