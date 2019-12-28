@@ -14,10 +14,19 @@ export class GetUserService {
     
   }
 
+  // https://us-central1-angular-532f5.cloudfunctions.net/app
+
   getUserData() {
     console.log('hello from the service')
-    return this.http.get('https://us-central1-angular-532f5.cloudfunctions.net/app', {responseType: 'text'}).subscribe(data => {
+    return this.http.get('https://us-central1-angular-532f5.cloudfunctions.net/app/auth/logout', {responseType: 'text'}).subscribe(data => {
       console.log('data', data)
     }) 
   }
+
+  // getUserData() {
+  //   console.log('hello from the service')
+  //   return this.http.get('https://onsnip.com/#/app/auth/logout', {responseType: 'text', headers: {"Access-Control-Allow-Origin": "*"}}).subscribe(data => {
+  //     console.log('data', data)
+  //   }) 
+  // }
 }
