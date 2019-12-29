@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -14,25 +14,12 @@ export class GetUserService {
     
   }
 
-  // https://us-central1-angular-532f5.cloudfunctions.net/app
+   
 
-  // getUserData() {
-  //   console.log('hello from the service')
-  //   return this.http.get('https://us-central1-angular-532f5.cloudfunctions.net/app/auth/logout', {responseType: 'text'}).subscribe(data => {
-  //     console.log('data', data)
-  //   }) 
-  // }
+  
   getUserData() {
-    console.log('Calling the service')
-    return this.http.get('https://us-central1-angular-532f5.cloudfunctions.net/app/auth/logout', {responseType: 'text'}).subscribe(data => {
-      console.log('data', data)
-    }) 
+    return this.http.get('http://localhost:5000/angular-532f5/us-central1/app/auth/login');
   }
 
-  // getUserData() {
-  //   console.log('hello from the service')
-  //   return this.http.get('https://onsnip.com/#/app/auth/logout', {responseType: 'text', headers: {"Access-Control-Allow-Origin": "*"}}).subscribe(data => {
-  //     console.log('data', data)
-  //   }) 
-  // }
+  
 }

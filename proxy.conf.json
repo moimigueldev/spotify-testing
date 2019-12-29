@@ -1,0 +1,9 @@
+{
+    "/angular-532f5/*": {
+      "target": "http://localhost:5000",
+      "secure": false,
+      "logLevel": "debug",
+      "changeOrigin": true
+    }
+
+  }
