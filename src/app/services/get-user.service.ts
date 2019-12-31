@@ -16,22 +16,28 @@ export class GetUserService {
   ngOnInit() {
     
   }
-  // https://angular-532f5.firebaseapp.com/login
-
+  
+  // https://us-central1-angular-532f5.cloudfunctions.net
   getUserData() {
     return this.http.get('https://us-central1-angular-532f5.cloudfunctions.net/app/auth/login');
   }
 
   logoutUser() {
-    this.logoutObserabel = this.http.get('https://us-central1-angular-532f5.cloudfunctions.net/app/auth/logout', {responseType: 'text'}).subscribe(data => {
+    this.http.get('https://us-central1-angular-532f5.cloudfunctions.net/app/auth/logout', {responseType: 'text'}).subscribe(data => {
       console.log('loggin out', data)
     })
   }
 
-  ngOnDestroy(): void {
-    console.log('destroing, logout')
-    this.logoutObserabel ? this.logoutObserabel.unsubscribe(): null;
-  }
+  getUserInfo(token) {
+    this.http.post('https://us-central1-angular-532f5.cloudfunctions.net/app/auth/user', {token}).subscribe(data => {
+      console.log('loggin out', data)
+    })
+  }   
+
+  // ngOnDestroy(): void {
+  //   console.log('destroing, logout')
+  //   this.logoutObserabel ? this.logoutObserabel.unsubscribe(): null;
+  // }
 
   
 }

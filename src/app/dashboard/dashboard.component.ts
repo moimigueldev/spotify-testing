@@ -15,7 +15,14 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log('in The dashboard Component');
+    let hashString = window.location.hash.toString()
+    const start = hashString.indexOf('=') + 1;
+    const end = hashString.indexOf('&');
+
+    const token = hashString.slice(start, end)
+    
+    this.userService.getUserInfo(token);
+    // console.log('in The dashboard Component', hashString.substr(start, end))
     
   }
 
