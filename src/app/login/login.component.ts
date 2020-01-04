@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
     this.userData = this.userService.getUserData().subscribe((data) => {
       window.location.href =  data['url']
     });
+    
   }
 
 
