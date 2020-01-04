@@ -30,7 +30,7 @@ export class GetUserService {
     })
   }
 
-  getUserInfo(token) {
+  saveUserInfo(token) {
     this.http.post('http://localhost:5000/angular-532f5/us-central1/app/auth/user', {token}).subscribe(data => {
       if( data['statusCode'] === 401) {
         this.router.navigate(['/login'])
@@ -39,6 +39,15 @@ export class GetUserService {
       }
     })
   }   
+
+ 
+  
+
+getSavedUser() {
+  this.http.get('http://localhost:5000/angular-532f5/us-central1/app/auth/savedUser').subscribe(data => {
+    console.log("back with the data", data)
+  })
+}
 
   // ngOnDestroy(): void {
   //   console.log('destroing, logout')

@@ -15,15 +15,23 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    
+    
+  }
+
+  saveUserData() {
     let hashString = window.location.hash.toString()
     const start = hashString.indexOf('=') + 1;
     const end = hashString.indexOf('&');
 
     const token = hashString.slice(start, end)
     
-    this.userService.getUserInfo(token);
+    this.userService.saveUserInfo(token);
     // console.log('in The dashboard Component', hashString.substr(start, end))
-    
+  }
+
+  getSavedUser() {
+    this.userService.getSavedUser()
   }
 
 }
