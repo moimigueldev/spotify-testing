@@ -70,7 +70,12 @@ getSavedUser() {
 
 
 logoutUser() {
-  console.log('login out', JSON.parse(this.cookieService.get('spotify-user')))
+
+  this.http.get('http://localhost:5000/angular-532f5/us-central1/app/auth/logout', {responseType: 'text'}).subscribe(data => {
+
+    this.cookieService.delete('spotify-user')
+    this.router.navigate(['/login'])
+  })
   
   
 }
