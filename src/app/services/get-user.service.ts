@@ -55,7 +55,7 @@ export class GetUserService {
     
     this.http.post('http://localhost:5000/angular-532f5/us-central1/app/auth/loginUser', {token}).subscribe(data => {
        
-      
+        console.log('ling i in', data)
         this.cookieService.set('spotify-user', JSON.stringify(data), 24 * 60 * 60 * 1000)
         this.router.navigate(['/dashboard'])
       
