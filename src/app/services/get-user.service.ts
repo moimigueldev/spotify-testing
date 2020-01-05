@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -40,30 +40,13 @@ export class GetUserService {
 
  
 
-  saveUserInfo(token) {
-    this.http.post('http://localhost:5000/angular-532f5/us-central1/app/auth/user', {token}).subscribe(data => {
-      if( data['statusCode'] === 401) {
-        this.router.navigate(['/login'])
-      } else {
-        console.log('data', data)
-      }
-    })
-  }   
-
 
 
 
   loginUser(token) {
-
-    // 24 * 60 * 60 * 1000
-    // this.cookieService.set('user', 'moisesmiguel')
-    
     this.http.post('http://localhost:5000/angular-532f5/us-central1/app/auth/loginUser', {token}).subscribe(data => {
-       
-        console.log('ling i in', data)
         this.cookieService.set('spotify-user', JSON.stringify(data), 24 * 60 * 60 * 1000)
         this.router.navigate(['/dashboard'])
-      
     })
   }
 
@@ -88,8 +71,7 @@ getSavedUser() {
 
 logoutUser() {
   console.log('login out', JSON.parse(this.cookieService.get('spotify-user')))
-  // console.log('login out', this.cookieService.delete('spotify-user'))
-  // console.log('login out', this.cookieService.get('spotify-user'))
+  
   
 }
 
