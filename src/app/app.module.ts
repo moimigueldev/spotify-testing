@@ -9,13 +9,15 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { CookieService } from 'ngx-cookie-service';
+import { LoginRedirectComponent } from './login-redirect/login-redirect.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     LoginComponent,
-    LogoutComponent
+    LogoutComponent,
+    LoginRedirectComponent
   ],
   imports: [
     BrowserModule,

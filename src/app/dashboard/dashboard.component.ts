@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { GetUserService } from '../services/get-user.service';
 import { Subscription } from 'rxjs';
+import { Route } from '@angular/compiler/src/core';
+import { ActivatedRoute } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,16 +16,15 @@ export class DashboardComponent implements OnInit {
 
 
   constructor(
-    private userService: GetUserService
+    private userService: GetUserService,
+    private route: ActivatedRoute,
+    private cookieParser: CookieService
   ) { }
 
   ngOnInit() {
-    let hashString = window.location.hash.toString()
-    const start = hashString.indexOf('=') + 1;
-    const end = hashString.indexOf('&');
-
-    this.token = hashString.slice(start, end)
-    this.userService.loginUser(this.token)
+    
+   this.userService.getSavedUser()
+   
   }
 
   // saveUserData() {

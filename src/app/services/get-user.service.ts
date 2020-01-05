@@ -55,8 +55,9 @@ export class GetUserService {
     
     this.http.post('http://localhost:5000/angular-532f5/us-central1/app/auth/loginUser', {token}).subscribe(data => {
        
+      
         this.cookieService.set('spotify-user', JSON.stringify(data), 24 * 60 * 60 * 1000)
-        console.log('data', this.cookieService.get('spotify-user'))
+        this.router.navigate(['/dashboard'])
       
     })
   }
@@ -65,16 +66,25 @@ export class GetUserService {
   
 
 getSavedUser() {
-  this.http.get('http://localhost:5000/angular-532f5/us-central1/app/auth/savedUser').subscribe(data => {
+  let cookie = this.cookieService.get('spotify-user')
+  
+  if(cookie.length) {
+    cookie = JSON.parse(cookie)
+    this.http.post('http://localhost:5000/angular-532f5/us-central1/app/auth/savedUser', {cookie}).subscribe(data => {
     console.log("back with the data", data)
   })
+  } else {
+    this.router.navigate(['/login'])
+  }
+  
+  
 }
 
 
 logoutUser() {
-  console.log('login out', this.cookieService.get('spotify-user'))
-  console.log('login out', this.cookieService.delete('spotify-user'))
-  console.log('login out', this.cookieService.get('spotify-user'))
+  console.log('login out', JSON.parse(this.cookieService.get('spotify-user')))
+  // console.log('login out', this.cookieService.delete('spotify-user'))
+  // console.log('login out', this.cookieService.get('spotify-user'))
   
 }
 

@@ -4,13 +4,17 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
+import { LoginRedirectComponent } from './login-redirect/login-redirect.component';
 
 
 const routes: Routes = [
   {path: '', component: AppComponent},
-  {path: 'dashboard', component: DashboardComponent},
+  {path: 'dashboard', component: DashboardComponent, children:[
+    {path: ':user', component: DashboardComponent}
+  ]},
   {path: 'login', component: LoginComponent},
   {path: 'logout', component: LogoutComponent},
+  {path: 'login-redirect', component: LoginRedirectComponent},
   {path: '**', component: AppComponent}
 ];
 
