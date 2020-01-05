@@ -17,21 +17,22 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
+ 
     
   }
 
   onLogin(): void {
-    this.userData = this.userService.getUserData().subscribe((data) => {
-      window.location.href =  data['url']
-    });
+    this.userService.getUserData();
+    // this.userData = this.userService.getUserData().subscribe((data) => {
+    //   window.location.href =  data['url']
+    // });
     
   }
 
 
-  ngOnDestroy(): void {
-    console.log('destroing')
-    this.userData ? this.userData.unsubscribe(): null;
-  }
+  // ngOnDestroy(): void {
+  //   console.log('destroing')
+  //   this.userData ? this.userData.unsubscribe(): null;
+  // }
 
 }

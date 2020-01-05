@@ -27,7 +27,15 @@ export class GetUserService {
   
   // https://us-central1-angular-532f5.cloudfunctions.net
   getUserData() {
-    return this.http.get('http://localhost:5000/angular-532f5/us-central1/app/auth/login');
+    const doesCookieExist = this.cookieService.check('spotify-user')
+    if (doesCookieExist) {
+      this.router.navigate(['/dashboard'])
+    } else {
+      this.http.get('http://localhost:5000/angular-532f5/us-central1/app/auth/login')
+      .subscribe(data => {
+        window.location.href = data['url']
+      })
+    } 
   }
 
  
@@ -46,9 +54,6 @@ export class GetUserService {
 
 
   loginUser(token) {
-    
-   
-  
 
     // 24 * 60 * 60 * 1000
     // this.cookieService.set('user', 'moisesmiguel')
