@@ -9,7 +9,7 @@ import { GetUserService } from '../services/get-user.service';
 })
 export class DashboardComponent implements OnInit {
 
-  token:string;
+  token: string;
 
 
   constructor(
@@ -18,8 +18,8 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    
-   this.userService.getSavedUser();
-   
+
+    this.userService.getSavedUser();
+
   }
 }
