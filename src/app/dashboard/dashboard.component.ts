@@ -13,46 +13,49 @@ export class DashboardComponent implements OnInit {
 
   token: string;
 
-  artistData = [
-    { total: 62, artist: "Kanye West" },
-    { total: 42, artist: "BONES" },
-    { total: 42, artist: "Kendrick Lamar" },
-    { total: 29, artist: "A$AP Rocky" },
-    { total: 21, artist: "Night Lovell" },
-    { total: 18, artist: "Kid Cudi" },
+  // artistData = [
+  //   { total: 62, artist: "Kanye West" },
+  //   { total: 42, artist: "BONES" },
+  //   { total: 42, artist: "Kendrick Lamar" },
+  //   { total: 29, artist: "A$AP Rocky" },
+  //   { total: 21, artist: "Night Lovell" },
+  //   { total: 18, artist: "Kid Cudi" },
 
-  ]
+  // ]
 
-  artistNames = this.artistData.map(el => el.artist)
-  dataArtist = this.artistData.map(el => el.total)
+
 
 
   //=============================================
   //                   BAR CHART
   //=============================================
-  public barChartOptions: ChartOptions = {
-    responsive: true,
-    tooltips: {
-      callbacks: {
-        label: (tooltipItem, data) => {
+
+  // artistNames = this.artistData.map(el => el.artist)
+  // dataArtist = this.artistData.map(el => el.total)
+
+  // public barChartOptions: ChartOptions = {
+  //   responsive: true,
+  //   tooltips: {
+  //     callbacks: {
+  //       label: (tooltipItem, data) => {
 
 
-          return tooltipItem.xLabel = this.artistData[tooltipItem.index].artist
+  //         return tooltipItem.xLabel = this.artistData[tooltipItem.index].artist
 
 
-        }
-      }
-    }
-  };
-  public barChartLabels: Label[] = this.artistNames;
-  public barChartType: ChartType = 'doughnut';
-  public barChartLegend = true;
-  public barChartPlugins = [];
+  //       }
+  //     }
+  //   }
+  // };
+  // public barChartLabels: Label[] = this.artistNames;
+  // public barChartType: ChartType = 'doughnut';
+  // public barChartLegend = true;
+  // public barChartPlugins = [];
 
-  public barChartData: ChartDataSets[] = [
-    { data: this.dataArtist, label: 'Series A' },
-    // { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
-  ];
+  // public barChartData: ChartDataSets[] = [
+  //   { data: this.dataArtist, label: 'Series A' },
+  //   // { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
+  // ];
 
 
   //=============================================
@@ -69,7 +72,40 @@ export class DashboardComponent implements OnInit {
   //   }
   // }
 
+  //=============================================
+  //                   SCCATTER CHART
+  //=============================================
 
+  // scatter
+
+  artistData = [
+    { total: 62, artist: "Kanye West" },
+    { total: 42, artist: "BONES" },
+    { total: 42, artist: "Kendrick Lamar" },
+    { total: 29, artist: "A$AP Rocky" },
+    { total: 21, artist: "Night Lovell" },
+    { total: 18, artist: "Kid Cudi" },
+
+  ]
+
+  public scatterChartOptions: ChartOptions = {
+    responsive: true,
+  };
+
+  public scatterChartData: ChartDataSets[] = [
+    {
+      data: [
+        { x: 62, y: 2015 },
+        { x: 42, y: 2019 },
+        { x: 21, y: 2020 },
+        { x: 29, y: 2013 },
+
+      ],
+      label: 'Series A',
+      pointRadius: 10,
+    },
+  ];
+  public scatterChartType: ChartType = 'scatter';
 
 
 
