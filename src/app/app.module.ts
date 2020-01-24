@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { CookieService } from 'ngx-cookie-service';
 import { LoginRedirectComponent } from './login-redirect/login-redirect.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { LoginRedirectComponent } from './login-redirect/login-redirect.componen
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ChartsModule
   ],
   providers: [GetUserService, CookieService],
   bootstrap: [AppComponent]

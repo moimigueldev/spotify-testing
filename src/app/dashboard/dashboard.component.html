@@ -1,3 +1,11 @@
 <p>dashboard works!</p>
-<!-- <button (click)="saveUserData()">save User Data</button> -->
-<!-- <button (click)="getSavedUser()">getUserData</button> --> 
+
+
+<!-- BAR CHART -->
+<div class="m-5">
+    <div class="card col-md-6 offset-md-3">
+        <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+            [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType">
+        </canvas>
+    </div>
+</div>
