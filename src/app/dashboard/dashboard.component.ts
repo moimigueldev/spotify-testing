@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GetUserService } from '../services/get-user.service';
-import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
-import { Label } from 'ng2-charts';
+import { ChartOptions, ChartType, ChartDataSets, Tooltip, ChartTooltipOptions } from 'chart.js';
+import { Label, MultiDataSet } from 'ng2-charts';
 
 
 @Component({
@@ -13,18 +13,64 @@ export class DashboardComponent implements OnInit {
 
   token: string;
 
+  artistData = [
+    { total: 62, artist: "Kanye West" },
+    { total: 42, artist: "BONES" },
+    { total: 42, artist: "Kendrick Lamar" },
+    { total: 29, artist: "A$AP Rocky" },
+    { total: 21, artist: "Night Lovell" },
+    { total: 18, artist: "Kid Cudi" },
+
+  ]
+
+  artistNames = this.artistData.map(el => el.artist)
+  dataArtist = this.artistData.map(el => el.total)
+
+
+  //=============================================
+  //                   BAR CHART
+  //=============================================
   public barChartOptions: ChartOptions = {
     responsive: true,
+    tooltips: {
+      callbacks: {
+        label: (tooltipItem, data) => {
+
+
+          return tooltipItem.xLabel = this.artistData[tooltipItem.index].artist
+
+
+        }
+      }
+    }
   };
-  public barChartLabels: Label[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
-  public barChartType: ChartType = 'bar';
+  public barChartLabels: Label[] = this.artistNames;
+  public barChartType: ChartType = 'doughnut';
   public barChartLegend = true;
   public barChartPlugins = [];
 
   public barChartData: ChartDataSets[] = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
+    { data: this.dataArtist, label: 'Series A' },
+    // { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
   ];
+
+
+  //=============================================
+  //                   DOUGHNUT CHART
+  //=============================================
+  // public doughnutChartLabels: Label[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
+  // public doughnutChartData: MultiDataSet = [
+  //   [350, 450, 100]
+  // ];
+  // public doughnutChartType: ChartType = 'doughnut';
+  // public dougnutChartTooltips = {
+  //   tooltips: {
+  //     enabled: false
+  //   }
+  // }
+
+
+
 
 
   constructor(
@@ -33,7 +79,7 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
+    console.log('length', this.artistData.length)
     this.userService.getSavedUser();
 
   }
