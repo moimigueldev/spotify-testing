@@ -11,6 +11,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { CookieService } from 'ngx-cookie-service';
 import { LoginRedirectComponent } from './login-redirect/login-redirect.component';
 import { ChartsModule } from 'ng2-charts';
+import { NavComponent } from './nav/nav.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ChartsModule } from 'ng2-charts';
     DashboardComponent,
     LoginComponent,
     LogoutComponent,
-    LoginRedirectComponent
+    LoginRedirectComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
