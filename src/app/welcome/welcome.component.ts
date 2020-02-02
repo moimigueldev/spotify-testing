@@ -1,4 +1,5 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
+import { GetUserService } from '../services/get-user.service';
 
 @Component({
   selector: 'app-welcome',
@@ -8,7 +9,8 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 export class WelcomeComponent implements OnInit {
 
   constructor(
-    private elementRef: ElementRef
+    private elementRef: ElementRef,
+    private userService: GetUserService
   ) { }
 
   ngOnInit() {
@@ -22,6 +24,11 @@ export class WelcomeComponent implements OnInit {
 
     document.body.classList.add('welcome-bg-image');
 
+  }
+
+
+  onLogin(): void {
+    this.userService.getUserData();
   }
 
 
