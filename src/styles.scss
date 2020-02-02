@@ -1,1 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
+
+// $bg-image: 'https://source.unsplash.com/twukN12EN7c/1920x1080';
+
+// body {
+//     background: url('https://source.unsplash.com/twukN12EN7c/1920x1080') no-repeat center center fixed;
+//     -webkit-background-size: cover;
+//     -moz-background-size: cover;
+//     background-size: cover;
+//     -o-background-size: cover;
+//   } 
+
+
+.welcome-bg-image {
+  background: url(./assets/welcome-page/bg-2.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+} 
+
+
+.login-bg-image {
+  background: url(./assets/welcome-page/bg-2.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+} 

@@ -12,6 +12,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { LoginRedirectComponent } from './login-redirect/login-redirect.component';
 import { ChartsModule } from 'ng2-charts';
 import { NavComponent } from './nav/nav.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { NavComponent } from './nav/nav.component';
     LoginComponent,
     LogoutComponent,
     LoginRedirectComponent,
-    NavComponent
+    NavComponent,
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,
