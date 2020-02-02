@@ -18,18 +18,24 @@ export class LoginRedirectComponent implements OnInit {
 
   ngOnInit() {
 
-
-
-
     document.body.classList.add('redirect-page');
 
 
-    // let hashString = window.location.hash.toString()
-    // const start = hashString.indexOf('=') + 1;
-    // const end = hashString.indexOf('&');
+    let hashString = window.location.hash.toString()
+    const start = hashString.indexOf('=') + 1;
+    const end = hashString.indexOf('&');
 
-    // this.token = hashString.slice(start, end)
-    // this.userService.loginUser(this.token)
+    this.token = hashString.slice(start, end)
+    this.userService.loginUser(this.token)
+  }
+
+
+  ngOnDestroy() {
+
+    let classList = document.body.classList;
+    while (classList.length > 0) {
+      classList.remove(classList.item(0));
+    }
   }
 
 }

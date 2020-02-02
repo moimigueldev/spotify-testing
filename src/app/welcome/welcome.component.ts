@@ -34,7 +34,7 @@ export class WelcomeComponent implements OnInit {
 
   ngOnDestroy() {
 
-    var classList = document.body.classList;
+    let classList = document.body.classList;
     while (classList.length > 0) {
       classList.remove(classList.item(0));
     }
