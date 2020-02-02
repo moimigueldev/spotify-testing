@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'welcome', component: WelcomeComponent },
   { path: 'logout', component: LogoutComponent },
   { path: 'login-redirect', component: LoginRedirectComponent },
-  { path: '**', component: AppComponent }
+  { path: '**', redirectTo: 'welcome' }
 ];
 
 @NgModule({

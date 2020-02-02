@@ -21,6 +21,7 @@ export class LoginRedirectComponent implements OnInit {
     document.body.classList.add('redirect-page');
 
 
+    // PARSES HASHSTRING FROM URL AND SENDS HASH TO SERVER
     let hashString = window.location.hash.toString()
     const start = hashString.indexOf('=') + 1;
     const end = hashString.indexOf('&');
