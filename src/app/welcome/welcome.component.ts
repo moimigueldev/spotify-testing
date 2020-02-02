@@ -14,14 +14,6 @@ export class WelcomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
-    // REMOVES BACKGROUND IMAGE AND SETS THE APPROPRIATE CLASS FOR THE COMPONENT
-    var classList = document.body.classList;
-    while (classList.length > 0) {
-      console.log('classList', classList)
-      classList.remove(classList.item(0));
-    }
-
     document.body.classList.add('welcome-bg-image');
 
   }
@@ -31,7 +23,13 @@ export class WelcomeComponent implements OnInit {
     this.userService.getUserData();
   }
 
+  ngOnDestroy() {
 
+    var classList = document.body.classList;
+    while (classList.length > 0) {
+      classList.remove(classList.item(0));
+    }
+  }
 
 
 

@@ -13,7 +13,8 @@ import { LoginRedirectComponent } from './login-redirect/login-redirect.componen
 import { ChartsModule } from 'ng2-charts';
 import { NavComponent } from './nav/nav.component';
 import { WelcomeComponent } from './welcome/welcome.component';
-
+import { NgxSpinnerModule } from "ngx-spinner";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +29,9 @@ import { WelcomeComponent } from './welcome/welcome.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ChartsModule
+    ChartsModule,
+    NgxSpinnerModule,
+    BrowserAnimationsModule
   ],
   providers: [GetUserService, CookieService],
   bootstrap: [AppComponent]
