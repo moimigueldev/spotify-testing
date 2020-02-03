@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Subscription } from 'rxjs';
+import { Subscription, Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { urlRoutes } from '../../assets/keys';
@@ -16,6 +16,7 @@ import { urlRoutes } from '../../assets/keys';
 export class GetUserService {
 
   logoutObserabel: Subscription;
+  topArtist = new Subject();
 
   constructor(
     private http: HttpClient,
@@ -61,7 +62,8 @@ export class GetUserService {
     if (cookie.length) {
       cookie = JSON.parse(cookie)
       this.http.post(urlRoutes['authSavedUser'], { cookie }).subscribe(data => {
-        console.log("back with the datas", data)
+        // console.log("back with the datas", data['filteredData'].mostListenedArtist)
+        this.topArtist.next(data['filteredData'].mostListenedArtist)
       })
     } else {
       this.router.navigate(['/login'])

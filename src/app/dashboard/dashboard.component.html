@@ -13,20 +13,20 @@
 
 
 <!-- DOUGHNUT CHART -->
-<!-- <div class="m-5">
+<div class="m-5" *ngIf="doughnutChartData.length === 1">
     <div class="card col-md-6 offset-md-3">
         <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType"
             [options]='dougnutChartOptions'>
         </canvas>
     </div>
-</div> -->
+</div>
 
 <!-- 
 SCATTER CHART -->
 
-<div class="m-5">
+<!-- <div class="m-5">
     <div class="card col-md-6 offset-md-3">
         <canvas baseChart [datasets]="scatterChartData" [options]="scatterChartOptions" [chartType]="scatterChartType">
         </canvas>
     </div>
-</div>
+</div> -->

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵCompiler_compileModuleSync__POST_R3__ } from '@angular/core';
 import { GetUserService } from '../services/get-user.service';
 import { ChartOptions, ChartType, ChartDataSets, Tooltip, ChartTooltipOptions } from 'chart.js';
 import { Label, MultiDataSet } from 'ng2-charts';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -12,6 +13,7 @@ import { Label, MultiDataSet } from 'ng2-charts';
 export class DashboardComponent implements OnInit {
 
   token: string;
+  topArtist: Subscription;
 
   // artistData = [
   //   { total: 62, artist: "Kanye West" },
@@ -59,64 +61,79 @@ export class DashboardComponent implements OnInit {
 
 
   //=============================================
-  //                   DOUGHNUT CHART
-  //=============================================
-  // public doughnutChartLabels: Label[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
-  // public doughnutChartData: MultiDataSet = [
-  //   [350, 450, 100]
-  // ];
-  // public doughnutChartType: ChartType = 'doughnut';
-  // public dougnutChartTooltips = {
-  //   tooltips: {
-  //     enabled: false
-  //   }
-  // }
-
-  //=============================================
   //                   SCCATTER CHART
   //=============================================
 
   // scatter
 
-  artistData = [
-    { total: 62, artist: "Kanye West" },
-    { total: 42, artist: "BONES" },
-    { total: 42, artist: "Kendrick Lamar" },
-    { total: 29, artist: "A$AP Rocky" },
-    { total: 21, artist: "Night Lovell" },
-    { total: 18, artist: "Kid Cudi" },
 
-  ]
 
-  public scatterChartOptions: ChartOptions = {
-    responsive: true,
-  };
+  // public scatterChartOptions: ChartOptions = {
+  //   responsive: true,
+  // };
 
-  public scatterChartData: ChartDataSets[] = [
-    {
-      data: [
-        { x: 62, y: 2015 },
-        { x: 42, y: 2019 },
-        { x: 21, y: 2020 },
-        { x: 29, y: 2013 },
+  // public scatterChartData: ChartDataSets[] = [
+  //   {
+  //     data: [
+  //       { x: 62, y: 2015 },
+  //       { x: 42, y: 2019 },
+  //       { x: 21, y: 2020 },
+  //       { x: 29, y: 2013 },
 
-      ],
-      label: 'Series A',
-      pointRadius: 10,
+  //     ],
+  //     label: 'Series A',
+  //     pointRadius: 10,
+  //   },
+  // ];
+  // public scatterChartType: ChartType = 'scatter';
+
+
+
+
+  //=============================================
+  //                   DOUGHNUT CHART
+  //=============================================
+  public doughnutChartLabels: Label[];
+  public doughnutChartData: MultiDataSet = [];
+  public doughnutChartType: ChartType = 'doughnut';
+  public dougnutChartOptions = {
+    tooltips: {
+      enabled: true
     },
-  ];
-  public scatterChartType: ChartType = 'scatter';
+    title: {
+      display: true,
+      text: 'Most Songs By an Artist'
+    },
+    legend: {
+      display: false
+    }
+
+  }
+
+  ngOnInit() {
+
+    this.userService.getSavedUser();
 
 
+    // TOP ARTIST
+    this.userService.topArtist.subscribe((data: { artist: string, total: number }[]) => {
+
+      let artist = data.splice(0, 10);
+      let artistNames = artist.map(el => el.artist)
+      let dataArtist = artist.map(el => el.total)
+      this.doughnutChartLabels = artistNames
+      this.doughnutChartData = [dataArtist]
+      console.log('emiited', this.doughnutChartData)
+
+
+    });// end of dougnut char data
+
+  }//end of oninit
 
   constructor(
     private userService: GetUserService,
 
   ) { }
 
-  ngOnInit() {
-    console.log('length', this.artistData.length)
-    this.userService.getSavedUser();
 
-  }
 }
