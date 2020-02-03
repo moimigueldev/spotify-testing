@@ -17,6 +17,7 @@ export class GetUserService {
 
   logoutObserabel: Subscription;
   topArtist = new Subject();
+  genres = new Subject();
 
   constructor(
     private http: HttpClient,
@@ -62,8 +63,9 @@ export class GetUserService {
     if (cookie.length) {
       cookie = JSON.parse(cookie)
       this.http.post(urlRoutes['authSavedUser'], { cookie }).subscribe(data => {
-        // console.log("back with the datas", data['filteredData'].mostListenedArtist)
+        // console.log("back with the datas", data)
         this.topArtist.next(data['filteredData'].mostListenedArtist)
+        this.genres.next(data['analytics'].topGenres)
       })
     } else {
       this.router.navigate(['/login'])

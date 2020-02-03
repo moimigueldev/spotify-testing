@@ -15,22 +15,22 @@ export class DashboardComponent implements OnInit {
   token: string;
   topArtist: Subscription;
 
-  // artistData = [
-  //   { total: 62, artist: "Kanye West" },
-  //   { total: 42, artist: "BONES" },
-  //   { total: 42, artist: "Kendrick Lamar" },
-  //   { total: 29, artist: "A$AP Rocky" },
-  //   { total: 21, artist: "Night Lovell" },
-  //   { total: 18, artist: "Kid Cudi" },
+  artistData = [
+    { total: 62, artist: "Kanye West" },
+    { total: 42, artist: "BONES" },
+    { total: 42, artist: "Kendrick Lamar" },
+    { total: 29, artist: "A$AP Rocky" },
+    { total: 21, artist: "Night Lovell" },
+    { total: 18, artist: "Kid Cudi" },
 
-  // ]
-
-
+  ]
 
 
-  //=============================================
-  //                   BAR CHART
-  //=============================================
+
+
+  // //=============================================
+  // //                   BAR CHART
+  // //=============================================
 
   // artistNames = this.artistData.map(el => el.artist)
   // dataArtist = this.artistData.map(el => el.total)
@@ -110,9 +110,52 @@ export class DashboardComponent implements OnInit {
 
   }
 
+  //=============================================
+  //                   LINE CHART
+  //=============================================
+
+  artistNames = this.artistData.map(el => el.artist)
+  dataArtist = this.artistData.map(el => el.total)
+
+  public barChartOptions: ChartOptions = {
+    responsive: true,
+    // tooltips: {
+    //   callbacks: {
+    //     label: (tooltipItem, data) => {
+
+
+    //       return tooltipItem.xLabel = this.artistData[tooltipItem.index].artist
+
+
+    //     }
+    //   }
+    // }
+  };
+  public barChartLabels: Label[];
+  public barChartType: ChartType = 'line';
+  public barChartLegend = false;
+  public barChartPlugins = [];
+
+  public barChartData: ChartDataSets[] = [];
+
   ngOnInit() {
 
     this.userService.getSavedUser();
+
+    // TOP GENRES 
+    this.userService.genres.subscribe((data: { name: string, total: number }[]) => {
+
+      let genres = data.splice(0, 10)
+      let genresName = genres.map(el => el.name)
+      let genresTotal = genres.map(el => el.total)
+      this.barChartData = [{
+        data: genresTotal,
+        pointBackgroundColor: ['red', 'green', 'blue', 'yellow', 'pink', 'purple', 'blue', 'yellow', 'pink', 'purple'],
+        pointRadius: 7,
+        fill: false
+      }]
+      this.barChartLabels = genresName;
+    })
 
 
     // TOP ARTIST
@@ -123,12 +166,16 @@ export class DashboardComponent implements OnInit {
       let dataArtist = artist.map(el => el.total)
       this.doughnutChartLabels = artistNames
       this.doughnutChartData = [dataArtist]
-      console.log('emiited', this.doughnutChartData)
-
 
     });// end of dougnut char data
 
+
+
+
   }//end of oninit
+
+
+
 
   constructor(
     private userService: GetUserService,
