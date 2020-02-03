@@ -76,7 +76,7 @@ export class GetUserService {
     this.http.get(urlRoutes['authLogout'], { responseType: 'text' }).subscribe(data => {
 
       this.cookieService.delete('spotify-user')
-      this.router.navigate(['/login'])
+      this.router.navigate(['/welcome'])
     })
 
 
