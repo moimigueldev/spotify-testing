@@ -27,7 +27,7 @@ export class GetUserService {
 
   }
 
-  // https://us-central1-angular-532f5.cloudfunctions.net
+
   getUserData() {
     const doesCookieExist = this.cookieService.check('spotify-user')
     if (doesCookieExist) {
@@ -54,19 +54,18 @@ export class GetUserService {
 
 
 
-
+  // this one
   getSavedUser() {
     let cookie = this.cookieService.get('spotify-user')
 
     if (cookie.length) {
       cookie = JSON.parse(cookie)
       this.http.post(urlRoutes['authSavedUser'], { cookie }).subscribe(data => {
-        console.log("back with the data", data)
+        console.log("back with the datas", data)
       })
     } else {
       this.router.navigate(['/login'])
     }
-
 
   }
 

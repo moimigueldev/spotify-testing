@@ -27,7 +27,7 @@ export class LoginRedirectComponent implements OnInit {
     const end = hashString.indexOf('&');
 
     this.token = hashString.slice(start, end)
-    // this.userService.loginUser(this.token)
+    this.userService.loginUser(this.token)
   }
 
 
